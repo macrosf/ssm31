@@ -5,6 +5,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	
+	<!-- service-context.xml由spring上下文监听器(ContextLoaderListener)对其进行扫描执行 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath*:service-context.xml</param-value>
@@ -37,9 +38,9 @@
 	<servlet>
 		<servlet-name>ssm31</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
+		<init-param> <!-- 如果我们不指定init-param配置，默认的，在服务器启动时，会在WEB-INF目录下查找命名规则为<servlet-name>-servlet.xml的文件，对应到这里就是ssm31-servlet.xml文件 -->
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath*:servlet-context.xml</param-value>
+			<param-value>classpath*:servlet-context.xml</param-value> <!-- servlet-context.xml包含容器启动时，所要执行的内容 -->
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

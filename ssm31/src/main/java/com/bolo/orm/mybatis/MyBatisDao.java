@@ -23,14 +23,17 @@ public class MyBatisDao extends SqlSessionDaoSupport{
 		getSqlSession().delete(key, object);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public <T> T get(String key, Object params) {
 		return (T) getSqlSession().selectOne(key, params);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public <T> List<T> getList(String key) {
 		return getSqlSession().selectList(key);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public <T> List<T> getList(String key, Object params) {
 		return getSqlSession().selectList(key, params);
 	}

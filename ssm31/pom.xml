@@ -58,17 +58,19 @@
 			<version>2.3.16</version>
 		</dependency>
 		
+		<!-- 本例还用到了一个mybatis-spring插件，这是因为spring 3.0.5仅支持ibatis 2.0，
+				所以需要这个插件来处理底层数据源等工作。 -->		
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.0.4</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -99,11 +101,15 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
+		<!-- 在写测试用例前，需要在POM文件中加入一个Srping测试依赖 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
+		<!-- 本例用到了AOP，所以需要这两个依赖 -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
@@ -114,6 +120,7 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${aspectj.version}</version>
 		</dependency>
+		
 	</dependencies>
 	<build>
 		<pluginManagement>
