@@ -102,7 +102,7 @@
 			<version>${spring.version}</version>
 		</dependency>
 		
-		<!-- 在写测试用例前，需要在POM文件中加入一个Srping测试依赖 -->
+		<!-- 在写测试用例前，需要在POM文件中加入一个Spring测试依赖 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>

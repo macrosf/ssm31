@@ -14,7 +14,11 @@
 	<!-- 对所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
 	<context:component-scan base-package="com.bolo">
 		<context:exclude-filter type="annotation" 
-				expression="org.springframework.stereotype.Service" />
+				expression="org.springframework.stereotype.Service" />	<!-- 让spring不扫描带有@Service注解的类 -->
+				<!-- 因为servlet-context.xml与service-context.xml不是同时加载，如果不进行这样的设置，
+				那么，spring就会将所有带@Service注解的类都扫描到容器中，等到加载service-context.xml
+				的时候，	会因为容器已经存在Service类，使得cglib将不对Service进行代理，直接导致的结果
+				就是在service-context中的事务配置不起作用，发生异常时，无法对数据进行回滚。 -->
 	</context:component-scan>
 	
 	<!-- 当请求应用程序首页时，将执行/hello请求，还可以设定成redirect -->
@@ -23,6 +27,10 @@
 	<!-- 这两个类用来启动基于Spring MVC的注解功能，将控制器与方法映射加入到容器中 -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	<!-- 能够将REST URL解析为请求映射的是DefaultAnnotationHandlerMapping这个类，它在启动时，
+			对Controller中所有标注了@RequestMapping注解的方法，都放到了一个HandlerMapping对象中，
+			当有请求时，就在这个对象中进行查找是否有与之匹配路径的处理方法，有则执行，没有就会输出一个
+			Not Page Found警告信息。 -->
 	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">

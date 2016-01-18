@@ -14,6 +14,7 @@
 
 	<description>Spring-database配置</description>
 	
+	<!-- 不扫描带有@Controller注解的类。因为这些类已经随容器启动时，在servlet-context中扫描过一遍了。 -->
 	<context:component-scan base-package="com.bolo">
 		<context:exclude-filter type="annotation" 
 				expression="org.springframework.stereotype.Controller" />
@@ -27,7 +28,7 @@
 		</property>
 	</bean>
 
-	<!-- mybatis Dao -->
+	<!-- 将MybatisDao基类配置进来，以便Service类可以用注解的方式引入-->
 	<bean id="myBatisDao" class="com.bolo.orm.mybatis.MyBatisDao" />
 
 	<!-- 数据源配置,使用应用内的DBCP数据库连接池 -->
